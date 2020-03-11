@@ -1,8 +1,6 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Cars from "./component/Cars";
-import Bikes from "./component/Bikes";
 import Exchange from "./component/Exchange";
 
 

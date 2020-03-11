@@ -1,6 +1,20 @@
 import React, {Component} from "react";
 
 class Exchange extends Component {
+    letterStyle = {
+        padding: 10,
+        margin: 10,
+        fontFamily: "monospace",
+        fontSize: 24,
+    };
+    inputStyle = {
+        padding: 2,
+        margin: 15,
+        fontFamily: "monospace",
+        fontSize: 20,
+        text: "monospace",
+    };
+
     constructor(props) {
         super(props);
         this.state = {value: '', eur: '0', usd: '0'};
@@ -14,8 +28,8 @@ class Exchange extends Component {
     }
 
     handleOnClick(event) {
-        this.setState({eur: Math.round(this.state.value * 4.31)});
-        this.setState({usd: Math.round(this.state.value * 3.81)});
+        this.setState({eur: (this.state.value * 4.31).toFixed(2)});
+        this.setState({usd: (this.state.value * 3.81).toFixed(2)});
         event.preventDefault();
     }
 
@@ -24,11 +38,11 @@ class Exchange extends Component {
             <form>
                 <label>
                     Kwota:
-                    <input type="text" value={this.state.value} onChange={this.handleChange} />
+                    <input type="number" value={this.state.value} style={this.inputStyle} onChange={this.handleChange} />
                 </label>
                 <button onClick={this.handleOnClick} type="submit">Przelicz</button>
-                <h4>{"EUR: " + this.state.eur}</h4>
-                <h4>{"USD: " + this.state.usd}</h4>
+                <h4 style={this.letterStyle}>{"EUR: " + this.state.eur}</h4>
+                <h4 style={this.letterStyle}>{"USD: " + this.state.usd}</h4>
             </form>
         );
     }
