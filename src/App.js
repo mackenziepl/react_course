@@ -2,20 +2,24 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Exchange from "./component/Exchange";
-
+import MyTable1 from "./component/MyTable1";
+import MyTable2 from "./component/MyTable2";
 
 function App() {
   return (
     <div className="App">
-      {/*TO bedzie header*/}
+      {/*To bedzie header*/}
       <header className="App-header">
         <Exchange/>
         <br/>
-{/*        <br/>
-        <Cars name='dupa'/>
+        <MyTable1/>
         <br/>
-        <Bikes/>
-        <br/>*/}
+        <MyTable2/>
+        <br/>
+        {/*<Cars name='dupa'/>*/}
+        {/*<br/>*/}
+        {/*<Bikes/>*/}
+        {/*<br/>*/}
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.

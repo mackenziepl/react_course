@@ -1,0 +1,9 @@
+Table {
+    width: 650px;
+    text-align: center;
+    background-color: white;
+    padding: 100px;
+    font-family: sans-serif;
+    color: #999999;
+    border-radius: 20px;
+}
