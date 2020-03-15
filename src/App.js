@@ -9,6 +9,7 @@ function App() {
       <header className="App-header">
           <div className="App-div-diet">
               <Diet className="App-diet"/>
+              <br/>
           </div>
         <img src={logo} className="App-logo" alt="logo" />
         <p>
