@@ -24,6 +24,12 @@
   color: white;
 }
 
+.App-div-diet {
+  margin: 40px;
+  width: 60%;
+  padding: 40px;
+}
+
 .App-link {
   color: #61dafb;
 }

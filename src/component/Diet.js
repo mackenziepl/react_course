@@ -4,9 +4,9 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import '../css/MyTable2.css';
+import '../css/Diet.css';
 
-class MyTable2 extends Component {
+class Diet extends Component {
 
     constructor(props) {
         super(props);
@@ -23,7 +23,6 @@ class MyTable2 extends Component {
     render() {
         return (
             <div>
-                <h6>MyTable2</h6>
                 <Table>
                     <TableHead>
                         <TableRow>
@@ -53,4 +52,4 @@ class MyTable2 extends Component {
     }
 }
 
-export default MyTable2;
+export default Diet;
