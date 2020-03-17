@@ -27,9 +27,6 @@ class Diet extends Component {
             page: 0,
             rowsPerPage: 0
         };
-
-        this.handleClick = this.handleClick.bind(this);
-        this.handleSelectAllClick = this.handleSelectAllClick.bind(this);
     }
 
     handleRequestSort = (event, property) => {
@@ -40,15 +37,15 @@ class Diet extends Component {
 
     handleSelectAllClick = (event) => {
         if (event.target.checked) {
-            const newSelecteds = this.state.rows.map(n => n.name);
-            this.state.selected(newSelecteds);
+            const newSelected = this.state.rows.map(n => n.name);
+            this.setState({ selected: newSelected } );
             return;
         }
-        this.state.selected([]);
+        this.setState({ selected: [] } );
     };
 
-    handleClick = (event, name: string) => {
-        const selectedIndex = this.selected.indexOf(name);
+    handleClick = (event, name) => {
+        const selectedIndex = this.state.selected.indexOf(name);
         let newSelected: string[] = [];
 
         if (selectedIndex === -1) {
@@ -64,7 +61,7 @@ class Diet extends Component {
             );
         }
 
-        this.state.selected(newSelected);
+        this.setState({ selected: newSelected } );
     };
 
     stableSort = (array, comparator) => {
@@ -100,7 +97,7 @@ class Diet extends Component {
             .catch(err => console.log(err));
     }
 
-    isSelected = (name: string) => this.state.selected.indexOf(name) !== -1;
+    isSelected = (name) => this.state.selected.indexOf(name) !== -1;
 
     render() {
         return (
