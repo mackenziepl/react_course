@@ -3,6 +3,7 @@ import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+import Checkbox from '@material-ui/core/Checkbox';
 import '../css/Diet.css';
 import EnhancedTableHead from "./EnhancedTableHeader";
 
@@ -25,13 +26,45 @@ class Diet extends Component {
             selected: [],
             page: 0,
             rowsPerPage: 0
-        }
+        };
+
+        this.handleClick = this.handleClick.bind(this);
+        this.handleSelectAllClick = this.handleSelectAllClick.bind(this);
     }
 
     handleRequestSort = (event, property) => {
         const isAsc = this.state.orderBy === property && this.state.order === 'asc';
         this.setState({order: isAsc ? 'desc' : 'asc'});
         this.setState({orderBy: property});
+    };
+
+    handleSelectAllClick = (event) => {
+        if (event.target.checked) {
+            const newSelecteds = this.state.rows.map(n => n.name);
+            this.state.selected(newSelecteds);
+            return;
+        }
+        this.state.selected([]);
+    };
+
+    handleClick = (event, name: string) => {
+        const selectedIndex = this.selected.indexOf(name);
+        let newSelected: string[] = [];
+
+        if (selectedIndex === -1) {
+            newSelected = newSelected.concat(this.selected, name);
+        } else if (selectedIndex === 0) {
+            newSelected = newSelected.concat(this.selected.slice(1));
+        } else if (selectedIndex === this.selected.length - 1) {
+            newSelected = newSelected.concat(this.selected.slice(0, -1));
+        } else if (selectedIndex > 0) {
+            newSelected = newSelected.concat(
+                this.selected.slice(0, selectedIndex),
+                this.selected.slice(selectedIndex + 1),
+            );
+        }
+
+        this.state.selected(newSelected);
     };
 
     stableSort = (array, comparator) => {
@@ -67,29 +100,50 @@ class Diet extends Component {
             .catch(err => console.log(err));
     }
 
+    isSelected = (name: string) => this.state.selected.indexOf(name) !== -1;
+
     render() {
         return (
             <div>
                 <Table>
                     <EnhancedTableHead
-                        headCells={this.state.headCells}
+                        numSelected={this.state.selected.length}
                         order={this.state.order}
                         orderBy={this.state.orderBy}
+                        onSelectAllClick={this.handleSelectAllClick}
                         onRequestSort={this.handleRequestSort}
-                        rowCount={this.state.rows.length}
-                    />
+                        headCells={this.state.headCells}/>
                     <TableBody>
-                        {this.stableSort(this.state.rows, this.getComparator(this.state.order, this.state.orderBy)).map((row, i) => (
-                            <TableRow key={i}>
-                                <TableCell component="th" scope="row">
-                                    {row.name}
-                                </TableCell>
-                                <TableCell align="right">{row.calories}</TableCell>
-                                <TableCell align="right">{row.fat}</TableCell>
-                                <TableCell align="right">{row.carbs}</TableCell>
-                                <TableCell align="right">{row.protein}</TableCell>
-                            </TableRow>
-                        ))}
+                        {this.stableSort(this.state.rows, this.getComparator(this.state.order, this.state.orderBy))
+                            .map((row, index) => {
+                                const isItemSelected = this.isSelected(row.name);
+                                const labelId = `enhanced-table-checkbox-${index}`;
+                            return (
+                                <TableRow
+                                    hover
+                                    onClick={event => this.handleClick(event, row.name)}
+                                    role="checkbox"
+                                    aria-checked={isItemSelected}
+                                    tabIndex={-1}
+                                    key={row.name}
+                                    selected={isItemSelected}>
+                                >
+                                    <TableCell padding="checkbox">
+                                        <Checkbox
+                                            checked={isItemSelected}
+                                            inputProps={{ 'aria-labelledby': labelId }}
+                                        />
+                                    </TableCell>
+                                    <TableCell component="th" scope="row" padding="none">
+                                        {row.name}
+                                    </TableCell>
+                                    <TableCell align="right">{row.calories}</TableCell>
+                                    <TableCell align="right">{row.fat}</TableCell>
+                                    <TableCell align="right">{row.carbs}</TableCell>
+                                    <TableCell align="right">{row.protein}</TableCell>
+                                </TableRow>
+                            )
+                        })}
                     </TableBody>
                 </Table>
             </div>
