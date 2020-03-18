@@ -12,7 +12,7 @@ class Diet extends Component {
     constructor(props) {
         super(props);
         const headCells = [
-            {id: 'name', numeric: false, disablePadding: false, label: 'Dessert (100g serving)'},
+            {id: 'name', numeric: false, disablePadding: true, label: 'Dessert (100g serving)'},
             {id: 'calories', numeric: true, disablePadding: false, label: 'Calories'},
             {id: 'fat', numeric: true, disablePadding: false, label: 'Fat (g)'},
             {id: 'carbs', numeric: true, disablePadding: false, label: 'Carbs (g)'},
@@ -123,7 +123,6 @@ class Diet extends Component {
                                     tabIndex={-1}
                                     key={row.name}
                                     selected={isItemSelected}>
-                                >
                                     <TableCell padding="checkbox">
                                         <Checkbox
                                             checked={isItemSelected}
