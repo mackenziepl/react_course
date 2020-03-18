@@ -46,21 +46,20 @@ class Diet extends Component {
 
     handleClick = (event, name) => {
         const selectedIndex = this.state.selected.indexOf(name);
-        let newSelected: string[] = [];
+        let newSelected = [];
 
         if (selectedIndex === -1) {
-            newSelected = newSelected.concat(this.selected, name);
+            newSelected = newSelected.concat(this.state.selected, name);
         } else if (selectedIndex === 0) {
-            newSelected = newSelected.concat(this.selected.slice(1));
+            newSelected = newSelected.concat(this.state.selected.slice(1));
         } else if (selectedIndex === this.selected.length - 1) {
-            newSelected = newSelected.concat(this.selected.slice(0, -1));
+            newSelected = newSelected.concat(this.state.selected.slice(0, -1));
         } else if (selectedIndex > 0) {
             newSelected = newSelected.concat(
-                this.selected.slice(0, selectedIndex),
-                this.selected.slice(selectedIndex + 1),
+                this.state.selected.slice(0, selectedIndex),
+                this.state.selected.slice(selectedIndex + 1),
             );
         }
-
         this.setState({ selected: newSelected } );
     };
 
