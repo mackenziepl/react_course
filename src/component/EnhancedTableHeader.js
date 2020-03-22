@@ -19,7 +19,7 @@ function EnhancedTableHead(props) {
                 <TableCell padding="checkbox">
                     <Checkbox
                         indeterminate={numSelected > 0}
-                        checked={numSelected}
+                        checked={numSelected === headCells.length}
                         onChange={onSelectAllClick}
                         inputProps={{ 'aria-label': 'select all desserts' }}
                     />
