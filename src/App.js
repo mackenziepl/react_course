@@ -7,10 +7,10 @@ import Logo from "./component/Logo";
 import Contact from "./component/Contact";
 import Form from "./component/Form";
 
-function App() {
+const App = () => {
   return (
       <Router>
-          <div>
+          <div className="appContainer">
               <ul className="header">
                   <li><NavLink exact to="/">Strona główna</NavLink></li>
                   <li><NavLink to="/diet">Diet</NavLink></li>
@@ -18,13 +18,23 @@ function App() {
                   <li><NavLink to="/form">Form</NavLink></li>
                   <li><NavLink to="/contact">Kontakt</NavLink></li>
               </ul>
-              <div className="content">
+              <div className="appContent">
                   <Route exact path="/" component={Logo}/>
                   <Route path="/diet" component={Diet}/>
                   <Route path="/exchange" component={Exchange}/>
                   <Route path="/form" component={Form}/>
                   <Route path="/contact" component={Contact}/>
               </div>
+          </div>
+          <div className="footer">
+              <a
+                  className="App-link"
+                  href="https://reactjs.org"
+                  target="_blank"
+                  rel="noopener noreferrer"
+              >
+                  Learn React
+              </a>
           </div>
       </Router>
   );

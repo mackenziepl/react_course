@@ -1,0 +1,50 @@
+.container {
+    width: 70%;
+    max-width: 700px;
+    margin: 20px auto;
+    border-radius: 4px;
+    background-color: #61dafb;
+    padding: 20px;
+}
+.contactContent a:hover {
+    text-decoration: underline;
+    color: red;
+}
+input, textarea {
+    display: block;
+    width: 97%;
+    border-radius: 4px;
+    border: 1px solid #111111;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    resize: none;
+}
+input:focus, textarea:focus {
+    border: 2px solid #F22613;
+}
+button {
+    background-color: #ff6762;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+    color: #111111;
+}
+button:hover {
+    background-color: #2dec23;
+    text-decoration: none;
+}
+button:active {
+    border: 2px solid #ec180d;
+}
+label {
+    padding: 5px;
+    color: #110007;
+    text-decoration: none;
+    display: inline-block;
+}
+h2 {
+    padding: 5px 50px 30px;
+    text-align: center;
+    margin: 20px;
+    color: #111111;
+}

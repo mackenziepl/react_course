@@ -1,11 +1,16 @@
 body {
   background-color: #282c34;
-  padding: 20px;
-  margin: 0;
+  font-family: sans-serif;
+  color: #111111;
 }
 
-h1, h2, p, ul, li {
-  font-family: sans-serif;
+.appContainer {
+  width: 80%;
+  max-width: 1000px;
+  margin: auto;
+  border-radius: 4px;
+  padding: 20px;
+  min-height: calc(100vh - 202px)
 }
 
 ul.header li {
@@ -26,7 +31,7 @@ ul.header li a {
   display: inline-block;
 }
 
-.content {
+.appContent {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -36,16 +41,26 @@ ul.header li a {
   padding: 20px;
 }
 
-.content h2 {
+.appContent h2 {
   padding: 0;
   margin: 0;
 }
 
-.content li {
+.appContent li {
   margin-bottom: 10px;
 }
 
 .active {
   background-color: #1ea5ff;
+}
+
+.footer {
+  text-align: center;
+  font-size: 150%;
+  color: #fff;
+  margin: 0;
+  padding: 30px;
+  background: #446CB3;
+  margin-top: 20px;
 }
 

@@ -4,7 +4,6 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Checkbox from '@material-ui/core/Checkbox';
-import '../css/Diet.css';
 import EnhancedTableHead from "./EnhancedTableHeader";
 
 class Diet extends Component {
@@ -100,7 +99,7 @@ class Diet extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container">
                 <Table>
                     <EnhancedTableHead
                         numSelected={this.state.selected.length}

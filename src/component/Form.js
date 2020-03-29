@@ -19,8 +19,7 @@ class Form extends Component {
     };
 
     handleChange = (e) => {
-        const name = e.target.name;
-        const type = e.target.type;
+        const { name, type }  = e.target;
         if (type === "email" || type === "number") {
             const value = e.target.value;
             this.setState({
@@ -33,33 +32,17 @@ class Form extends Component {
         const name = e.target.name;
         const validation = this.formValidation();
         if (name === "email") {
-            if (validation.email) {
-                this.setState({
-                    errors: {
-                        email: false
-                    }
-                })
-            } else {
-                this.setState({
-                    errors: {
-                        email: !validation.email
-                    }
-                })
-            }
+            this.setState({
+                errors: {
+                    email: !validation.email
+                }
+            })
         } else if (name === "pesel") {
-            if (validation.pesel) {
-                this.setState({
-                    errors: {
-                        pesel: false
-                    }
-                })
-            } else {
-                this.setState({
-                    errors: {
-                        pesel: !validation.pesel
-                    }
-                })
-            }
+            this.setState({
+                errors: {
+                    pesel: !validation.pesel
+                }
+            })
         }
     };
 
@@ -89,22 +72,9 @@ class Form extends Component {
     };
 
     formValidation() {
-        let email = false;
-        let pesel = false;
-        let correct = false;
-
-        if (this.state.email.indexOf('@') !== -1) {
-            email = true;
-        }
-
-        if (this.state.pesel.length === 11) {
-            pesel = true;
-        }
-
-        if (email && pesel) {
-            correct = true
-        }
-
+        let email = this.state.email.indexOf('@') !== -1;
+        let pesel = this.state.pesel.length === 11;
+        let correct = email && pesel;
         return ({
             email,
             pesel,
@@ -123,15 +93,17 @@ class Form extends Component {
 
     render() {
         return (
-            <div>
+            <div className="form">
                 <form onSubmit={this.handleSubmit} noValidate>
-                    <label htmlFor="email">Email:
-                    <input type="email" id="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} onBlur={this.handleBlur}/>
-                        {this.state.errors.email && <span>{this.messages.email_incorrect}</span>}
+                    <label>
+                        <a>Email:</a>
+                            <input className="formInput" type="email" id="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} onBlur={this.handleBlur}/>
+                            {this.state.errors.email && <span>{this.messages.email_incorrect}</span>}
                     </label>
-                    <label htmlFor="pesel">PESEL:
-                    <input type="number" id="pesel" name="pesel" placeholder="Pesel" value={this.state.pesel} onChange={this.handleChange} onBlur={this.handleBlur}/>
-                        {this.state.errors.pesel && <span>{this.messages.pesel_incorrect}</span>}
+                    <label>
+                        <a>PESEL:</a>
+                            <input className="formInput" type="number" id="pesel" name="pesel" placeholder="Pesel" value={this.state.pesel} onChange={this.handleChange} onBlur={this.handleBlur}/>
+                            {this.state.errors.pesel && <span>{this.messages.pesel_incorrect}</span>}
                     </label>
                     <button>Zapisz</button>
                 </form>

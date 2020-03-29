@@ -35,15 +35,17 @@ class Exchange extends Component {
 
     render() {
         return (
-            <form>
-                <label>
-                    Kwota:
-                    <input type="number" value={this.state.value} style={this.inputStyle} onChange={this.handleChange} />
-                </label>
-                <button onClick={this.handleOnClick} type="submit">Przelicz</button>
-                <h4 style={this.letterStyle}>{"EUR: " + this.state.eur}</h4>
-                <h4 style={this.letterStyle}>{"USD: " + this.state.usd}</h4>
-            </form>
+            <div className="form">
+                <form>
+                    <label>
+                        Kwota:
+                        <input className="formInput" type="number" value={this.state.value} style={this.inputStyle} onChange={this.handleChange} />
+                    </label>
+                    <button onClick={this.handleOnClick} type="submit">Przelicz</button>
+                    <h4 style={this.letterStyle}>{"EUR: " + this.state.eur}</h4>
+                    <h4 style={this.letterStyle}>{"USD: " + this.state.usd}</h4>
+                </form>
+            </div>
         );
     }
 
