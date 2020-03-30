@@ -28,6 +28,7 @@ button {
     border-radius: 4px;
     font-weight: 700;
     color: #111111;
+    display: block;
 }
 button:hover {
     background-color: #2dec23;

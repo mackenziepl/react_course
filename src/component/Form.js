@@ -95,16 +95,12 @@ class Form extends Component {
         return (
             <div className="form">
                 <form onSubmit={this.handleSubmit} noValidate>
-                    <label>
-                        <a>Email:</a>
+                    <label>Email:</label>
                             <input className="formInput" type="email" id="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} onBlur={this.handleBlur}/>
                             {this.state.errors.email && <span>{this.messages.email_incorrect}</span>}
-                    </label>
-                    <label>
-                        <a>PESEL:</a>
+                    <label>PESEL:</label>
                             <input className="formInput" type="number" id="pesel" name="pesel" placeholder="Pesel" value={this.state.pesel} onChange={this.handleChange} onBlur={this.handleBlur}/>
                             {this.state.errors.pesel && <span>{this.messages.pesel_incorrect}</span>}
-                    </label>
                     <button>Zapisz</button>
                 </form>
                 {this.state.message && <h3>{this.state.message}</h3>}
@@ -112,5 +108,4 @@ class Form extends Component {
         )
     }
 }
-
 export default Form;
