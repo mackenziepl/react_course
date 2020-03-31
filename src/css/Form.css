@@ -10,7 +10,9 @@
 }
 .formInput {
     display: inline-block;
-    width: 45%;
+    font-size: 15px;
+    width: 44%;
+    height: 20px;
     border-radius: 4px;
     border: 1px solid #111111;
     padding: 5px 10px;

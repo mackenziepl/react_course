@@ -1,0 +1,40 @@
+.inputBox {
+    width: 100%;
+    display: block;
+    justify-items: center;
+    justify-content: center;
+    align-content: center;
+    margin-bottom: 12px;
+}
+
+.inputBox label {
+    width: 100px;
+    text-align: left;
+}
+
+.inputBox input {
+    padding: 6px;
+    font-size: 13px;
+    width: 300px;
+}
+
+button {
+    font-family: "PT Sans";
+    padding: 6px;
+    font-size: 1.2em;
+    width: 100px;
+}
+
+.inputBox select {
+    width: 315px;
+    height: 30px;
+    padding: 6px;
+    font-size: 15px;
+    margin-bottom: 7px;
+}
+
+.form h4 {
+    margin: 10px;
+    font-family: monospace;
+    font-size: 26px;
+}

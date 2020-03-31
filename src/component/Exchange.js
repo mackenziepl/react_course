@@ -1,61 +1,84 @@
 import React, {Component} from "react";
+import "../css/Exchange.css"
 
 class Exchange extends Component {
-    letterStyle = {
-        padding: 10,
-        margin: 10,
-        fontFamily: "monospace",
-        fontSize: 24,
-    };
-    inputStyle = {
-        padding: 2,
-        margin: 15,
-        fontFamily: "monospace",
-        fontSize: 20,
-        text: "monospace",
-    };
 
-    constructor(props) {
+     constructor(props) {
         super(props);
-        this.state = {value: '', eur: '0', usd: '0'};
-
-        this.handleChange = this.handleChange.bind(this);
-        this.handleOnClick = this.handleOnClick.bind(this);
+        this.state = {val: '',
+                currency: 'EUR',
+                error: "",
+                result: '0',
+                currencies: []};
     }
 
-    handleChange(event) {
-        this.setState({value: event.target.value});
-    }
+    handleChangeInput = (e) => {
+        this.setState({
+            val: e.target.value,
+            result: "0",
+            error: ""
+        });
+    };
 
-    handleOnClick(event) {
-        this.setState({eur: (this.state.value * 4.31).toFixed(2)});
-        this.setState({usd: (this.state.value * 3.81).toFixed(2)});
-        event.preventDefault();
+    handleChangeSelect = (e) => {
+        this.setState({
+            currency: e.target.value,
+            error: ""
+        });
+    };
+
+    handleOnClick = (e) => {
+        if (this.state.val && this.state.currencies && this.state.currency) {
+            const selectedCurrency = this.state.currencies.filter(c => c.code === this.state.currency)[0];
+            if (!selectedCurrency || !selectedCurrency.mid) {
+                this.setState({error: "Cannot connect to NBP..."});
+                return;
+            }
+
+            const calculated = (this.state.val * selectedCurrency.mid).toFixed(2);
+
+            if (calculated > 0) {
+                this.setState({result: calculated});
+            } else {
+                this.setState({error: "Wrong value..."});
+            }
+        } else {
+            this.setState({error: "Something went wrong..."});
+        }
+        e.preventDefault();
+    };
+
+    componentDidMount() {
+        const url = "https://api.nbp.pl/api/exchangerates/tables/A?format=json";
+        fetch(url)
+            .then(response => response.json())
+            .then(response => this.setState({currencies: response[0].rates}))
+            .catch(err => console.log(err));
     }
 
     render() {
         return (
             <div className="form">
                 <form>
-                    <label>
-                        Kwota:
-                        <input className="formInput" type="number" value={this.state.value} style={this.inputStyle} onChange={this.handleChange} />
-                    </label>
-                    <button onClick={this.handleOnClick} type="submit">Przelicz</button>
-                    <h4 style={this.letterStyle}>{"EUR: " + this.state.eur}</h4>
-                    <h4 style={this.letterStyle}>{"USD: " + this.state.usd}</h4>
+                    <label>Value:</label>
+                        <input className="formInput" type="number" aria-label="pln-input" value={this.state.val}
+                               placeholder="Please specify value" onChange={this.handleChangeInput} />
+                                <div className="inputBox">
+                                    <label>Currency:</label>
+                                    <select value={this.state.currency} onChange={this.handleChangeSelect}>
+                                        {this.state.currencies.map(c => (
+                                            <option key={c.code} value={c.code}>
+                                                {c.code} - {c.currency}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+                        <button onClick={this.handleOnClick} type="submit">Convert</button>
+                        <h4>{this.state.currency + ": " + this.state.result}</h4>
+                        <h5>{this.state.error}</h5>
                 </form>
             </div>
         );
-    }
-
-    convertAmount = () => {
-        return (
-        <>
-        <h4>{"EUR: " + Math.round(this.state.value * 4.31)}</h4>
-        <h4>{"USD: " + Math.round(this.state.value * 3.81)}</h4>
-        </>
-             )
     }
 }
 
