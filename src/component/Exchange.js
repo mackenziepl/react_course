@@ -60,12 +60,12 @@ class Exchange extends Component {
         return (
             <div className="form">
                 <form>
-                    <label>Value:</label>
-                        <input className="formInput" type="number" aria-label="pln-input" value={this.state.val}
+                    <label htmlFor="valueInput">Value:</label>
+                        <input id="valueInput" className="formInput" type="number" aria-label="pln-input" value={this.state.val}
                                placeholder="Please specify value" onChange={this.handleChangeInput} />
                                 <div className="inputBox">
-                                    <label>Currency:</label>
-                                    <select value={this.state.currency} onChange={this.handleChangeSelect}>
+                                    <label htmlFor="currencyInput">Currency:</label>
+                                    <select id="currencyInput" value={this.state.currency} onChange={this.handleChangeSelect}>
                                         {this.state.currencies.map(c => (
                                             <option key={c.code} value={c.code}>
                                                 {c.code} - {c.currency}

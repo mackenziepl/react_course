@@ -10,11 +10,29 @@ test("renders component", async () => {
 );
 
 test("calculates result after user types value", async () => {
-    const { getByLabelText, getByText, debug } = render(<Exchange/>);
-    const input = getByLabelText("pln-input");
-    console.log(debug);
-    fireEvent.change(input, { target: { value: "122" } });
-    const text= await waitForElement(() => getByText("EUR: 555.38"));
-    console.log(debug);
+    const fakeRatesResponse =
+        [
+            {
+                rates: [
+                    {currency: "euro", code: "EUR", mid: 4.5694},
+                    {currency: "forint (Węgry)", code: "HUF", mid: 0.012533},
+                    {currency: "frank szwajcarski", code: "CHF", mid: 4.3236},
+                    {currency: "funt szterling", code: "GBP", mid: 5.1588}
+                ]
+            }
+        ];
+    jest.spyOn(window, 'fetch').mockImplementationOnce(() => {
+        return Promise.resolve({
+            json: () => Promise.resolve(fakeRatesResponse),
+        })
+    });
+
+    const { findByLabelText, getByText, findByText} = render(<Exchange/>);
+    const input = await findByLabelText("Value:");
+    fireEvent.change(input, { target: { value: 122 } });
+    const button = getByText('Convert');
+    expect(button).toBeInTheDocument();
+    fireEvent.click(button);
+    const text = await findByText("EUR: " + (4.5694*122).toFixed(2));
     expect(text).toBeInTheDocument();
 });
