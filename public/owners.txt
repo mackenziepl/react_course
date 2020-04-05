@@ -1,0 +1,4 @@
+[{"id":1,"firstName":"Jan","lastName":"Null","phoneNumber":"582365147","email":"null@null","city":"Wrocław"},
+{"id":2,"firstName":"Mack","lastName":"Mackenzie","phoneNumber":"413667085","email":"mack@mack","city":"Kielce"},
+{"id":3,"firstName":"Sebek","lastName":"Guru","phoneNumber":"583567898","email":"sebek@sebek","city":"Wrocław"},
+{"id":4,"firstName":"Lukas","lastName":"Skywalker","phoneNumber":"586587941","email":"lukasz@lukasz","city":"Wrocław"}]

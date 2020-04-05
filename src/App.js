@@ -6,6 +6,7 @@ import Exchange from "./component/Exchange";
 import Logo from "./component/Logo";
 import Contact from "./component/Contact";
 import Form from "./component/Form";
+import Owners from "./component/CarsApp/Owners";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
                   <li><NavLink to="/diet">Diet</NavLink></li>
                   <li><NavLink to="/exchange">Exchange</NavLink></li>
                   <li><NavLink to="/form">Form</NavLink></li>
+                  <li><NavLink to="/owners">Owners</NavLink></li>
                   <li><NavLink to="/contact">Kontakt</NavLink></li>
               </ul>
               <div className="appContent">
@@ -23,6 +25,7 @@ const App = () => {
                   <Route path="/diet" component={Diet}/>
                   <Route path="/exchange" component={Exchange}/>
                   <Route path="/form" component={Form}/>
+                  <Route path="/owners" component={Owners}/>
                   <Route path="/contact" component={Contact}/>
               </div>
           </div>
